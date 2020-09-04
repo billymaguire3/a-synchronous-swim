@@ -12,7 +12,7 @@ describe('server responses', () => {
 
   it('should respond to a OPTIONS request', (done) => {
     let {req, res} = server.mock('/', 'OPTIONS');
-
+    console.log('OPTIONS test has passed')
     httpHandler.router(req, res);
     expect(res._responseCode).to.equal(200);
     expect(res._ended).to.equal(true);
@@ -22,7 +22,16 @@ describe('server responses', () => {
   });
 
   it('should respond to a GET request for a swim command', (done) => {
-    // write your test here
+    let {req, res} = server.mock('/', 'GET');
+    const moves = ['left', 'right', 'up', 'down']
+
+    console.log('GET test has passed');
+
+    httpHandler.router(req, res);
+    expect(res._responseCode).to.equal(200);
+    expect(res._ended).to.equal(true);
+    // console.log('response data in test: ',res._data.toString());
+    expect(moves.includes(res._data.toString())).to.equal(true);
     done();
   });
 
