@@ -4,20 +4,37 @@
 
   //
   // TODO: build the swim command fetcher here
-  //
-
+  const ajaxGetFetch = (callback = ()=>{}) => {
+    console.log("hello!");
+    $.ajax({
+      type: 'GET',
+      // data:
+      url: `${serverUrl}/moves`,
+      success: (data) => {
+        console.log("direction", data);
+        console.log('GET random move was a Success.');
+        // invoke swimteam updateLoc
+        callback()
+      }
+    });
+  };
+// add setINterval here?
+setInterval(()=>{
+  ajaxGetFetch();
+},2500)
   /////////////////////////////////////////////////////////////////////
   // The ajax file uplaoder is provided for your convenience!
   // Note: remember to fix the URL below.
   /////////////////////////////////////////////////////////////////////
 
+  // ajax request
   const ajaxFileUplaod = (file) => {
     var formData = new FormData();
     formData.append('file', file);
     $.ajax({
       type: 'POST',
       data: formData,
-      url: 'FILL_ME_IN',
+      url: 'http://127.0.0.1:3000',
       cache: false,
       contentType: false,
       processData: false,
@@ -27,7 +44,7 @@
       }
     });
   };
-
+  //grabs form and on submit adds background image
   $('form').on('submit', function(e) {
     e.preventDefault();
 
@@ -42,7 +59,7 @@
       console.log('Not a jpg file!');
       return;
     }
-
+    // call on post request with file
     ajaxFileUplaod(file);
   });
 
