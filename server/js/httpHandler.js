@@ -24,7 +24,9 @@ module.exports.router = (req, res, next = ()=>{}) => {
     next(); // invoke next() at the end of a request to help with testing!
   }
   // else if Request method is GET
-  else if (req.method == 'GET') {
+  else if (req.method === 'GET') {
+    if (req.url === "/moves") {
+    console.log("Request Handler:  ", req.url);
       // create array of moves
       const moves = ['up','down', 'left', 'right'];
       // create variable set to Math.Random() for random index
@@ -32,13 +34,14 @@ module.exports.router = (req, res, next = ()=>{}) => {
       console.log('randomIndex', randomIndex);
       // use index to grab random move
       const randomMove = moves[randomIndex];
-      // send random move to user using method on response object
-      res.write(randomMove);
       // responds with 200 status code
       res.writeHead(200, headers);
+      // send random move to user using method on response object
+      res.write(randomMove);
       // end it
       res.end();
       // call next
       next();
+  }
   }
 };
