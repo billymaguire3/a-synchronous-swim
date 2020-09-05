@@ -5,7 +5,6 @@
   //
   // TODO: build the swim command fetcher here
   const ajaxGetFetch = (callback = ()=>{}) => {
-    console.log("hello!");
     $.ajax({
       type: 'GET',
       // data:
@@ -13,12 +12,12 @@
       success: (data) => {
         console.log("direction", data);
         console.log('GET random move was a Success.');
-        // invoke swimteam updateLoc
-        callback()
+        // invoke swimteam move with our random data string
+        SwimTeam.move(data);
       }
     });
   };
-// add setINterval here?
+// use setInterval to move swimmer around randomly every 2.5 seconds
 setInterval(()=>{
   ajaxGetFetch();
 },2500)
