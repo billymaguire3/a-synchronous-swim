@@ -35,9 +35,9 @@ describe('server responses', () => {
     done();
   });
 
-  xit('should respond with 404 to a GET request for a missing background image', (done) => {
-    httpHandler.backgroundImageFile = path.join('.', 'spec', 'missing.jpg');
-    let {req, res} = server.mock('FILL_ME_IN', 'GET');
+  it('should respond with 404 to a GET request for a missing background image', (done) => {
+    httpHandler.backgroundImageFile = path.join('.', 'spec', './spec/water-sm.jpg');
+    let {req, res} = server.mock('/', 'GET');
 
     httpHandler.router(req, res, () => {
       expect(res._responseCode).to.equal(404);

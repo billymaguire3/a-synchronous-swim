@@ -1,9 +1,22 @@
 const SwimTeam = {
 
+//   $(document).ready(function(){
+//     $(".bg").css("background-image", "url('/css/images/css.jpg')");
+//  });
+
   // direction, start and max all need to match the CSS
   direction: 'left',
   coords: { top: 100, left: 100 },
   max: { top: 0, left: 0, bottom: 295, right: 240 },
+
+  setBackgroundImage: () => {
+
+    let pool = document.getElementById('pool');
+    let image = document.createElement('img');
+    image.src = '/Users/quon/workspace2/hrsf130-a-synchronous-swim/client/js/water-sm.jpg'
+    pool.appendChild(image);
+
+  },
 
   move: (direction) => {
     if (!SwimTeam.valid(direction)) {
@@ -65,7 +78,7 @@ const SwimTeam = {
         SwimTeam.coords.left += 5;
       }
       break;
-    } 
+    }
   }
 
 };

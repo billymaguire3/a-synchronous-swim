@@ -10,16 +10,33 @@
       // data:
       url: `${serverUrl}/moves`,
       success: (data) => {
-        console.log("direction", data);
-        console.log('GET move was a Success.');
+        // console.log("direction", data);
+        // console.log('GET move was a Success.');
         // invoke swimteam move with our pressed data string
         SwimTeam.move(data);
       }
     });
   };
-setInterval(()=>{
-  ajaxGetFetch();
-  },2000)
+
+// setInterval(()=>{
+//   ajaxGetFetch();
+//   },2000)
+
+    const ajaxGetImage = (callback = ()=>{}) => {
+    $.ajax({
+      type: 'GET',
+      // data:
+      url: `${serverUrl}/image`,
+      success: (data) => {
+        console.log("image: ", data);
+        console.log('GET image was a Success.');
+        // invoke swimteam move with our pressed data string
+        SwimTeam.setBackgroundImage(data);
+      }
+    });
+  };
+
+  ajaxGetImage();
   /////////////////////////////////////////////////////////////////////
   // The ajax file uplaoder is provided for your convenience!
   // Note: remember to fix the URL below.
@@ -37,8 +54,10 @@ setInterval(()=>{
       contentType: false,
       processData: false,
       success: () => {
+        // get Image
         // reload the page
         window.location = window.location.href;
+
       }
     });
   };

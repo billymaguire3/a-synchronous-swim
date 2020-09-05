@@ -46,6 +46,9 @@ module.exports.router = (req, res, next = ()=>{}) => {
         // call next
         next();
     }
+  } else if (req.url === '/image') {
+    console.log('endpoint running!')
+    res.end()
   }
 };
 
