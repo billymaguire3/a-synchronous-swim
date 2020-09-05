@@ -11,16 +11,15 @@
       url: `${serverUrl}/moves`,
       success: (data) => {
         console.log("direction", data);
-        console.log('GET random move was a Success.');
-        // invoke swimteam move with our random data string
+        console.log('GET move was a Success.');
+        // invoke swimteam move with our pressed data string
         SwimTeam.move(data);
       }
     });
   };
-// use setInterval to move swimmer around randomly every 2.5 seconds
 setInterval(()=>{
   ajaxGetFetch();
-},2500)
+  },2000)
   /////////////////////////////////////////////////////////////////////
   // The ajax file uplaoder is provided for your convenience!
   // Note: remember to fix the URL below.
